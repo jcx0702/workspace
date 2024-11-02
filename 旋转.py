@@ -44,7 +44,7 @@ class Net (torch.nn.module):
  
 def      get _date _loader(is _ train);
 to_tensor=transforms.Compose([transforms.ToTensor()])
-date_set=MNIST(root=)
+date_set=MNIST(root="date")
 
 
 
