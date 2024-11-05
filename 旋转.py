@@ -32,7 +32,7 @@ class Net (torch.nn.module):
             self.fc3  =  torch.nnlinear(64*10)
 
             self.conv = torch.nn.Conv2d(1,1,kernel_size=3,stride=1,padding=1)
-    def  forward(self.x):
+    def  forward(self.x)
              x = torch.nn.functional.relu(self.fcl1(x))
              x = torch.nn.functional.relu(self.fcl2(x))
              x = torch.nn.functional.relu(self.fcl3(x))
