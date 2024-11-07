@@ -5,6 +5,7 @@ import scipy.sparse as sp
 #from scipy.sparse.linalg.eigen.arpack import eigsh 不知道为什么这个报错
 from scipy.sparse.linalg.eigen import arpack
 import sys
+from scipy.sparse.linalg import eigsh
 
 
 def parse_index_file(filename):
