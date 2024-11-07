@@ -2,8 +2,6 @@ import numpy as np
 import pickle as pkl
 import networkx as nx
 import scipy.sparse as sp
-#from scipy.sparse.linalg.eigen.arpack import eigsh 不知道为什么这个报错
-from scipy.sparse.linalg.eigen import arpack
 import sys
 from scipy.sparse.linalg import eigsh
 
