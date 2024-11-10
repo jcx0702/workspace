@@ -6,9 +6,7 @@ from torchvision import transforms
 from torchvision import datasets
 import torch.nn.functional as F
 
-"""
-卷积运算 使用mnist数据集，和10-4，11类似的，只是这里：1.输出训练轮的acc 2.模型上使用torch.nn.Sequential
-"""
+
 # Super parameter ------------------------------------------------------------------------------------
 batch_size = 64
 learning_rate = 0.01
@@ -17,10 +15,10 @@ EPOCH = 10
 
 # Prepare dataset ------------------------------------------------------------------------------------
 transform = transforms.Compose([transforms.ToTensor(), transforms.Normalize((0.1307,), (0.3081,))])
-# softmax归一化指数函数(https://blog.csdn.net/lz_peter/article/details/84574716),其中0.1307是mean均值和0.3081是std标准差
 
-train_dataset = datasets.MNIST(root='./data/mnist', train=True, transform=transform)  # 本地没有就加上download=True
-test_dataset = datasets.MNIST(root='./data/mnist', train=False, transform=transform)  # train=True训练集，=False测试集
+
+train_dataset = datasets.MNIST(root='./data/mnist', train=True, transform=transform)  
+test_dataset = datasets.MNIST(root='./data/mnist', train=False, transform=transform)  
 train_loader = DataLoader(train_dataset, batch_size=batch_size, shuffle=True)
 test_loader = DataLoader(test_dataset, batch_size=batch_size, shuffle=False)
 
@@ -72,8 +70,7 @@ criterion = torch.nn.CrossEntropyLoss()  # 交叉熵损失
 optimizer = torch.optim.SGD(model.parameters(), lr=learning_rate, momentum=momentum)  # lr学习率，momentum冲量
 
 
-# Train and Test CLASS --------------------------------------------------------------------------------------
-# 把单独的一轮一环封装在函数类里
+
 def train(epoch):
     running_loss = 0.0  # 这整个epoch的loss清零
     running_total = 0
@@ -99,9 +96,9 @@ def train(epoch):
         if batch_idx % 300 == 299:  # 不想要每一次都出loss，浪费时间，选择每300次出一个平均损失,和准确率
             print('[%d, %5d]: loss: %.3f , acc: %.2f %%'
                   % (epoch + 1, batch_idx + 1, running_loss / 300, 100 * running_correct / running_total))
-            running_loss = 0.0  # 这小批300的loss清零
+            running_loss = 0.0 
             running_total = 0
-            running_correct = 0  # 这小批300的acc清零
+            running_correct = 0 
 
         # torch.save(model.state_dict(), './model_Mnist.pth')
         # torch.save(optimizer.state_dict(), './optimizer_Mnist.pth')
